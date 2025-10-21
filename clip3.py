@@ -67,15 +67,12 @@ def generate_and_save_embeddings(folder_path):
             records.append(row)
 
     result_df = pd.concat(records, ignore_index=True)
-    result_df.to_csv("data/clip_fashion_embeddings.csv", encoding="utf-8", index=False)
+    # result_df.to_csv("data/clip_fashion_embeddings.csv", encoding="utf-8", index=False)
+
+    result_df.to_csv("s3://content-marketing-pixabay-images/clip_fashion_embeddings.csv", index=False)
 
 # save to index
 # save_to_pinecone(image_id, img_feat, meta_feat, other_metadata, top_category="retail_ecommerce", sub_category="fashion_and_apparel")
 
 folder_path = "data/test"
 generate_and_save_embeddings(folder_path)
-
-
-################################# TEST query ################################
-# q = model.get_text_features(**proc(text="red summer dress", return_tensors="pt"))
-# q = norm(q).detach().cpu().numpy()
